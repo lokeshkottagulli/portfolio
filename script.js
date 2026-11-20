@@ -252,8 +252,9 @@ if (certFilterBtns.length > 0 && certCards.length > 0) {
       const filter = btn.getAttribute("data-filter");
 
       certCards.forEach(card => {
-        const cat = card.getAttribute("data-category");
-        if (filter === "all" || cat === filter) {
+        const cat = card.getAttribute("data-category") || "";
+        const categories = cat.split(/\s+/);
+        if (filter === "all" || categories.includes(filter)) {
           card.classList.remove("is-hidden");
         } else {
           card.classList.add("is-hidden");
@@ -298,7 +299,7 @@ function openCertModal(data) {
   }
 
   if (data.image) {
-    if (modalImage) modalImage.src = data.image;
+    if (modalImage) modalImage.src = encodeURI(data.image);
     if (modalImageContainer) modalImageContainer.style.display = "block";
   } else {
     if (modalImageContainer) modalImageContainer.style.display = "none";
@@ -306,7 +307,7 @@ function openCertModal(data) {
 
   const fileUrl = data.pdf || data.image || "certificates/Fynity_Certificate_DSA.pdf";
   if (modalDownloadLink) {
-    modalDownloadLink.href = fileUrl;
+    modalDownloadLink.href = encodeURI(fileUrl);
     const ext = fileUrl.endsWith(".pdf") ? ".pdf" : ".jpg";
     modalDownloadLink.setAttribute("download", `${data.title.replace(/[^a-zA-Z0-9_-]/g, "_")}_Certificate${ext}`);
     const span = modalDownloadLink.querySelector("span");
