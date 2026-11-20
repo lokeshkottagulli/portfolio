@@ -2069,20 +2069,24 @@ video {
   color: var(--ink);
 }
 
-.email-link {
+.email-link,
+.phone-link {
   color: var(--accent);
   transition: color .2s;
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  text-decoration: none;
 }
 
-.email-link:hover {
-  color: #1522c7;
+.email-link:hover,
+.phone-link:hover {
+  color: var(--accent-hover);
   text-decoration: underline;
 }
 
-.email-link .arr {
+.email-link .arr,
+.phone-link .arr {
   font-size: 14px;
 }
 
