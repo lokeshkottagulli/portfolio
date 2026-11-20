@@ -1,0 +1,10 @@
+# Dependencies and OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+*.log
+scratch/
+check_*.py
+test_*.py
